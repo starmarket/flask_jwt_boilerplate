@@ -21,10 +21,10 @@ class Login(Resource):
         parser.add_argument('username', type=str, required=True)
         parser.add_argument('password', type=str, required=True)
         reqdata = parser.parse_args(strict=True)
-        
+
         username = reqdata['username']
         password = reqdata['password']
-        
+
         # Change this to check the user details against a database
         if username != 'test' or password != 'test':
             resp = jsonify({'login': False})
@@ -43,12 +43,12 @@ class Login(Resource):
 class Logout(Resource):
 
     def post(self):
-        
+
         """ Logout the user """
 
         resp = jsonify({'logout': True})
         unset_jwt_cookies(resp)
-        
+
         return make_response(resp, 200)
 
 
@@ -58,7 +58,7 @@ class RefreshToken(Resource):
     def post(self):
 
         """ Refresh the users token (jwt) """
-        
+
         current_user = get_jwt_identity()
         access_token = create_access_token(identity=current_user, fresh=False)
 
