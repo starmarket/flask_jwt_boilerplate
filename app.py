@@ -6,10 +6,10 @@ from test.api import api as test_api
 import config
 
 app = Flask(__name__)
-api = Api(app)
+api = Api(app, catch_all_404s=True)
 jwt = JWTManager(app)
 
-app.config.from_object(config.DevelopmentConfig) 
+app.config.from_object(config.DevelopmentConfig)
 
 
 # Blueprints

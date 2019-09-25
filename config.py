@@ -8,9 +8,9 @@ class Config(object):
     DATABASE = 'path_to_dev_db'
 
     # JWT
-    JWT_TOKEN_LOCATION = ['cookies'] 
+    JWT_TOKEN_LOCATION = ['cookies']
     JWT_COOKIE_SECURE = False  # Only allow JWT cookies to be sent over https if True.
-    JWT_ACCESS_COOKIE_PATH = '/api/' 
+    JWT_ACCESS_COOKIE_PATH = '/api/'
     JWT_REFRESH_COOKIE_PATH = '/auth/refresh'
     JWT_COOKIE_CSRF_PROTECT = True
     JWT_ACCESS_CSRF_COOKIE_PATH = '/api/'
