@@ -6,6 +6,7 @@ from flask_jwt_extended import (
     get_jwt_identity, set_access_cookies,
     set_refresh_cookies
 )
+from auth.models import User
 
 auth_blueprint = Blueprint("auth", __name__)
 api = Api(auth_blueprint)
@@ -30,8 +31,10 @@ class Login(Resource):
             resp = jsonify({'login': False})
             return make_response(resp, 401)
 
-        access_token = create_access_token(identity=username)
-        refresh_token = create_refresh_token(identity=username)
+        user = User(uuid='87', username='test', roles=['admin'])
+
+        access_token = create_access_token(identity=user)
+        refresh_token = create_refresh_token(identity=user)
 
         resp = jsonify({'login': True})
         set_access_cookies(resp, access_token)

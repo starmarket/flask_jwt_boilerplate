@@ -11,6 +11,13 @@ jwt = JWTManager(app)
 
 app.config.from_object(config.DevelopmentConfig)
 
+@jwt.user_identity_loader
+def user_identity_lookup(user):
+    return user.username
+
+@jwt.user_claims_loader
+def add_claims_to_access_token(user):
+    return {'roles': user.roles}
 
 # Blueprints
 app.register_blueprint(
